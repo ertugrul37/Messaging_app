@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_301"
+    tools:context=".TelefonoturumActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/telefonnumarsıgirdisi"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="190dp"
+        android:hint="Telefon numarasını yazınız..."
+        android:drawableStart="@drawable/ic_baseline_phone_android_24"
+        android:textAlignment="2"
+        android:textAllCaps="false"/>
+
+    <EditText
+        android:id="@+id/dogrulamakodugirdisi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dogrulamagonderbtn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="15dp"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:hint="Doğrulama kodunu yazınız..."
+        android:textAlignment="2"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:visibility="invisible"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dogrulamagonderbtn"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="40dp"
+        android:textAllCaps="false"
+        android:background="@color/white"
+        android:text="DOĞRULAMA KODU GÖNDER"
+        android:textSize="15dp"
+        android:layout_below="@id/telefonnumarsıgirdisi"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/dogrulabtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_below="@id/dogrulamakodugirdisi"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/white"
+        android:text="DOĞRULA"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

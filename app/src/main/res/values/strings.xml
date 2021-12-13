@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Mee-Too</string>
+    <string name="yen_hesap_olu_tur">YENİ HESAP OLUŞTUR</string>
+    <string name="hesabim_var">HESABIM VAR</string>
+
+    <string name="kullan_c_ad">Kullanıcı Adı</string>
+    <string name="e_mail">e-mail</string>
+    <string name="parola">Parola</string>
+    <string name="hesap_olu_tur">HESAP OLUŞTUR</string>
+    <string name="hesabinizla_g_r_yapiniz">HESABINIZLA GİRİŞ YAPINIZ</string>
+    <string name="g_r_yap">GİRİŞ YAP</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="stekler">İSTEKLER</string>
+    <string name="stekler_ekrani">İSTEKLER EKRANI</string>
+    <string name="chats_ekrani">CHATS EKRANI</string>
+    <string name="k_yap">Çıkış yap</string>
+    <string name="t_m_kullan_c_lar">Tüm kullanıcılar</string>
+    <string name="ayarlar">Profil Ayarları</string>
+    <string name="arkada_bul">Arkadaş bul</string>
+    <string name="gurup_olu_tur">Gurup oluştur</string>
+    <string name="g_nder">GÖNDER</string>
+    <string name="kullan_c_durumu">Kullanıcı Durumu</string>
+    <string name="kabul">KABUL</string>
+    <string name="ptal">İPTAL</string>
+    <string name="kullan_c_adi">Kullanıcı Adı</string>
+    <string name="todo">TODO</string>
+    <string name="mesaj_n_z_giriniz">Mesajınızı giriniz...</string>
+    <string name="mesaj_n_z_yaz_n_z">Mesajınızı yazınız...</string>
+    <string name="yeni_kay_t_sayfas">Yeni kayıt sayfası</string>
+</resources>

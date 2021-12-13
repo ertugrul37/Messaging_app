@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--arkadaşbul-->
+    <item
+        android:id="@+id/Arkadasbul"
+        android:icon="@drawable/friends_seach"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <!--grupoluştur-->
+    <item
+        android:id="@+id/anagrubolustur"
+        android:icon="@drawable/create_group"
+        app:showAsAction="always" />
+    <!--ayarlar-->
+    <item
+        android:id="@+id/Ayarlar"
+        android:icon="@drawable/profile_settings"
+        app:showAsAction="always" />
+    <!--exit-->
+    <item
+        android:id="@+id/mainLogout"
+        android:icon="@drawable/exit"
+        app:showAsAction="always"
+
+        />
+</menu>

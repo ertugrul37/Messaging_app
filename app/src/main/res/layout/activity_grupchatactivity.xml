@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_301"
+    tools:context=".grupchatactivity">
+
+
+    <include
+        android:id="@+id/grupchatbar"
+        layout="@layout/actionbar_app"/>
+
+    <ScrollView
+        android:id="@+id/scrolview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mylinearlayout"
+        android:layout_below="@+id/grupchatbar"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/grup_chat_metni_gosterme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="45dp"
+                android:padding="10dp"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/mylinearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/edittext_mesaj"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/grupmesajıgirdisi"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/mesaj_n_z_yaz_n_z"
+            android:paddingStart="10dp"
+            android:selectAllOnFocus="false"
+            android:singleLine="true"
+            android:textColorHint="@color/white"
+            android:textSize="16sp"
+             />
+
+        <ImageButton
+            android:id="@+id/mesajgondermebtn"
+            android:layout_width="41dp"
+            android:layout_height="40dp"
+            android:background="@drawable/gonder"
+            android:contentDescription="@string/todo"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_301"
+    tools:context=".chatActivity">
+
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        android:id="@+id/yukribarr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/menu_bar_border"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/sohbetegondermeresmi"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mesajekranıkullanıcıadı"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="İsim burada görülecek"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/mesajekranısongorülme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="son görülme" />
+
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/mesajekranıprofilresmi"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icons8">
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/kullanicilarin_özel_mesajların_listesi"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_below="@+id/yukribarr"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/chat_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/edittext_mesaj"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/girilen_mesaj"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:hint="@string/mesaj_n_z_giriniz"
+            android:paddingStart="10dp"
+            android:textColorHint="@color/white"
+            android:textSize="15sp"
+
+            />
+
+        <ImageButton
+            android:id="@+id/chatmesajgöderbutonu"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:background="@drawable/gonder" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

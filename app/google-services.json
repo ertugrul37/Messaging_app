@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "671213796030",
+    "project_id": "msjgrp-d6453",
+    "storage_bucket": "msjgrp-d6453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671213796030:android:03d790e5297b78ae27fcef",
+        "android_client_info": {
+          "package_name": "com.mee.msjgrp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671213796030-rjhsi5kje9hp325095rmbg3iemmealh4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mee.msjgrp",
+            "certificate_hash": "41c8aa88934a3ad1aaddc18054b8059a438b022f"
+          }
+        },
+        {
+          "client_id": "671213796030-o2o7h2c736s6vfu14pu8s7iq5f0me5rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWK2-u9zjld3oVuc9qNrcSQd3Kj2DNOc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671213796030-o2o7h2c736s6vfu14pu8s7iq5f0me5rr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

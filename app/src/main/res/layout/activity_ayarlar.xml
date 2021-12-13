@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_301"
+    tools:context=".ayarlar">
+
+    <include
+        layout="@layout/actionbar_app"
+        android:id="@+id/ayarlar_toolbar"
+ />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="200dp"
+        android:id="@+id/profilresmiayarla"
+        android:layout_height="200dp"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/black"
+        android:src="@drawable/ico"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/kullanıcıadıayarla"
+        android:layout_below="@+id/profilresmiayarla"
+        android:inputType="textMultiLine"
+        android:hint="Kullanıcı Adı"
+        tools:ignore="HardcodedText"
+        android:textColorHint="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="4dp"
+
+       />
+
+    <EditText
+        android:id="@+id/profildurumuayarla"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/kullanıcıadıayarla"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:hint="Profil Durumu ayarla"
+        android:inputType="textMultiLine"
+        android:padding="4dp"
+        android:textColorHint="@color/black"
+        tools:ignore="HardcodedText"
+
+        />
+
+    <Button
+        android:id="@+id/ayarlarıguncelleme"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/profildurumuayarla"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textMultiLine"
+        android:padding="4dp"
+        android:text="GÜNCELLE"
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText"
+
+        />
+</RelativeLayout>

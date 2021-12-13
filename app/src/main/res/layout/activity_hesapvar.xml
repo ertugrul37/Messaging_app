@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_301"
+    tools:context=".hesapvar">
+
+    <include layout="@layout/actionbar_app"
+        android:id="@+id/actionbarlogin"
+ />
+
+    <TextView
+        android:id="@+id/txtınfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/actionbarlogin"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="90dp"
+        android:text="@string/hesabinizla_g_r_yapiniz"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
+
+    <EditText
+        android:id="@+id/txtemaillogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtınfo1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/edittext_border"
+        android:padding="7dp"
+        android:layout_marginEnd="10dp"
+        android:text="ertugrulgunes37@gmail.com"
+        android:hint="@string/e_mail"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/txtpasswordlogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtemaillogin"
+        android:textColorHint="@color/black"
+        android:background="@drawable/edittext_border"
+        android:padding="7dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:inputType="numberPassword"
+        android:text="373737"
+        android:hint="@string/parola" />
+
+    <Button
+        android:id="@+id/btnlogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_below="@id/txtpasswordlogin"
+        android:background="@color/Red"
+        android:text="@string/g_r_yap"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btntelefon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_below="@+id/btnlogin"
+        android:background="@color/Red"
+        android:text="TELEFON İLE GİRİŞ"
+        android:textColor="@color/white"
+        />
+
+
+
+
+</RelativeLayout>

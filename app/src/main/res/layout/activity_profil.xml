@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_301"
+    tools:context=".profilActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profilresmiziyaret"
+
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:src="@drawable/icons8" />
+
+    <TextView
+        android:id="@+id/profilziyaretkullaniciadi"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profilresmiziyaret"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="18dp"
+        android:text="Kullanıcı Adi"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profil durumu ziyaret"
+        android:textAlignment="center"
+        android:layout_below="@+id/profilziyaretkullaniciadi"
+        android:id="@+id/profilziyaretdurumu"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:textSize="15sp"
+        android:layout_marginTop="25dp"
+        android:textAllCaps="false"
+        />
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="MESAJ GÖNDER"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:textSize="18sp"
+    android:textAllCaps="false"
+    android:id="@+id/mesajgondermetalebibtn"
+    android:layout_below="@+id/profilziyaretdurumu"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MESAJ TALEBİ İPTAL"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:id="@+id/mesajtalebiiptal"
+        android:layout_below="@+id/mesajgondermetalebibtn"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
