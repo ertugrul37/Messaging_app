@@ -72,10 +72,10 @@ public class TelefonoturumActivity extends AppCompatActivity {
 
                     PhoneAuthOptions options =
                             PhoneAuthOptions.newBuilder(mAuth)
-                                    .setPhoneNumber(telefonnumarası)       // Phone number to verify
-                                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                                    .setActivity(TelefonoturumActivity.this)                 // Activity (for callback binding)
-                                    .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                                    .setPhoneNumber(telefonnumarası)       
+                                    .setTimeout(60L, TimeUnit.SECONDS)
+                                    .setActivity(TelefonoturumActivity.this)                 
+                                    .setCallbacks(mCallbacks)        
                                     .build();
                     PhoneAuthProvider.verifyPhoneNumber(options);
                 }

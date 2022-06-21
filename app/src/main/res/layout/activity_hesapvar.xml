@@ -33,12 +33,12 @@
         android:layout_below="@+id/txtınfo1"
         android:layout_marginStart="10dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/edittext_border"
-        android:padding="7dp"
         android:layout_marginEnd="10dp"
-        android:text="ertugrulgunes37@gmail.com"
+        android:background="@drawable/edittext_border"
         android:hint="@string/e_mail"
         android:inputType="textEmailAddress"
+        android:padding="7dp"
+        android:text="projemMobil@gmail.com"
         android:textColorHint="@color/black" />
 
     <EditText
@@ -53,7 +53,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:inputType="numberPassword"
-        android:text="373737"
+        android:text="123456789"
         android:hint="@string/parola" />
 
     <Button

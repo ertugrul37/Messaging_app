@@ -28,7 +28,6 @@ public class Arkadasbul extends AppCompatActivity {
     private Toolbar mToolbar;
     private RecyclerView Arkadasbullisetesi;
 
-
     //firebase
     private DatabaseReference kullainiciyolu;
 
@@ -44,7 +43,7 @@ public class Arkadasbul extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Arkadaşlar");
+        getSupportActionBar().setTitle("Arkadaş Bul");
 
 
         //firebasetanılaması
@@ -59,17 +58,21 @@ public class Arkadasbul extends AppCompatActivity {
         //başladığında ne yapsın
 
         //sorgu-seçenekler
-        FirebaseRecyclerOptions<kisiler>secenekler=new FirebaseRecyclerOptions.Builder<kisiler>()
+        FirebaseRecyclerOptions<kisiler>secenekler=
+                new FirebaseRecyclerOptions.Builder<kisiler>()
                 .setQuery(kullainiciyolu,kisiler.class)
                 .build();
 
-
-        FirebaseRecyclerAdapter<kisiler,ArkadasBulViewHolder>adapter=new FirebaseRecyclerAdapter<kisiler, ArkadasBulViewHolder>(secenekler) {
+        FirebaseRecyclerAdapter<kisiler,ArkadasBulViewHolder> adapter = new
+                FirebaseRecyclerAdapter<kisiler, ArkadasBulViewHolder>(secenekler) {
             @Override
-            protected void onBindViewHolder(@NonNull ArkadasBulViewHolder arkdasBulViewHolder, @SuppressLint("RecyclerView") int position, @NonNull kisiler kisilerm) {
+            protected void onBindViewHolder
+                    (@NonNull ArkadasBulViewHolder arkdasBulViewHolder,
+
+                     @SuppressLint("RecyclerView") final int position, @NonNull kisiler kisilerm) {
 
                 arkdasBulViewHolder.kullaniciAdi.setText(kisilerm.getAd());
-                arkdasBulViewHolder.kullanicidurumu.setText(kisilerm.getAd());
+                arkdasBulViewHolder.kullanicidurumu.setText(kisilerm.getDurum());
                 Picasso.get().load(kisilerm.getResim()).into(arkdasBulViewHolder.profilResmi);
 
                 //Tıklandığında
@@ -77,8 +80,12 @@ public class Arkadasbul extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         String Tıklanankullanicliarıdgoster=getRef(position).getKey();
+
                         Intent profilAktivite=new Intent(Arkadasbul.this,profilActivity.class);
-                        profilAktivite.putExtra("Tıklanankullanicliarıdgoster",Tıklanankullanicliarıdgoster);
+
+                        profilAktivite.putExtra("Tıklanankullanicliarıdgoster",
+                                Tıklanankullanicliarıdgoster);
+
                         startActivity(profilAktivite);
 
                     }
