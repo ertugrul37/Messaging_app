@@ -86,17 +86,17 @@ public class TaleplerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Taleplerfragmanetkontrol= inflater.inflate(R.layout.fragment_talepler, container, false);
-        mYetki=FirebaseAuth.getInstance();
-        aktifkullaniciId=mYetki.getCurrentUser().getUid();
-        //FİREBASE
+       Taleplerfragmanetkontrol= inflater.inflate(R.layout.fragment_talepler, container, false);
+       mYetki=FirebaseAuth.getInstance();
+       aktifkullaniciId=mYetki.getCurrentUser().getUid();
+       //FİREBASE
         sohbeettalebleriyolu= FirebaseDatabase.getInstance().getReference().child("sohbet talebi");
         kullanicilaryolu= FirebaseDatabase.getInstance().getReference().child("kullanicilar");
         sohbetleryolu= FirebaseDatabase.getInstance().getReference().child("sohbetler");
-        //recycler
+      //recycler
         taleplerlistem=Taleplerfragmanetkontrol.findViewById(R.id.chattaleplerilistesi);
         taleplerlistem.setLayoutManager(new LinearLayoutManager(getContext()));
-        return Taleplerfragmanetkontrol;
+       return Taleplerfragmanetkontrol;
     }
 
     @Override
@@ -144,14 +144,14 @@ public class TaleplerFragment extends Fragment {
                                         }
 
 
-                                        //veri tabanından verileri çekip değişkenlere aktarma
-                                        final String talepkullaniciadi=snapshot.child("ad").getValue().toString();
-                                        final String talepkullanicidurumu=snapshot.child("durum").getValue().toString();
+                                            //veri tabanından verileri çekip değişkenlere aktarma
+                                            final String talepkullaniciadi=snapshot.child("ad").getValue().toString();
+                                            final String talepkullanicidurumu=snapshot.child("durum").getValue().toString();
 
 
-                                        //çekilen verileri ilgili kontrollere aktarma
-                                        taleplerViewholder.kullaniciadi.setText(talepkullaniciadi);
-                                        taleplerViewholder.kullanicidurumu.setText("kullanıcı seninle iletişim kurmak istiyor");
+                                            //çekilen verileri ilgili kontrollere aktarma
+                                            taleplerViewholder.kullaniciadi.setText(talepkullaniciadi);
+                                            taleplerViewholder.kullanicidurumu.setText("kullanıcı seninle iletişim kurmak istiyor");
 
 
                                         //her satıra tıklandığında ne yapsın
@@ -159,12 +159,12 @@ public class TaleplerFragment extends Fragment {
                                             @Override
                                             public void onClick(View view)
                                             {
-                                                CharSequence secenekler[]=new CharSequence[]
-                                                        {
-                                                                "Kabul",
-                                                                "İptal"
-                                                        };
-                                                //ALERTDİALOG
+                                              CharSequence secenekler[]=new CharSequence[]
+                                                      {
+                                                              "Kabul",
+                                                              "İptal"
+                                                      };
+                                              //ALERTDİALOG
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                                                 builder.setTitle(talepkullaniciadi+" Mesaj talebi");
 
@@ -176,46 +176,46 @@ public class TaleplerFragment extends Fragment {
                                                         {
                                                             sohbetleryolu.child(aktifkullaniciId).child(kullanici_id_listesi).child("sohbetler")
                                                                     .setValue("Kaydedildi").addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                        @Override
-                                                                        public void onComplete(@NonNull Task<Void> task)
-                                                                        {
-                                                                            if (task.isSuccessful())
-                                                                            {
-                                                                                sohbetleryolu.child(kullanici_id_listesi).child(aktifkullaniciId)
-                                                                                        .child("sohbetler").setValue("Kaydedildi")
-                                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                            @Override
-                                                                                            public void onComplete(@NonNull Task<Void> task)
-                                                                                            {
-                                                                                                if (task.isSuccessful())
-                                                                                                {
-                                                                                                    sohbeettalebleriyolu.child(aktifkullaniciId).child(kullanici_id_listesi)
-                                                                                                            .removeValue()
-                                                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                                                @Override
-                                                                                                                public void onComplete(@NonNull Task<Void> task)
-                                                                                                                {
-                                                                                                                    if (task.isSuccessful())
-                                                                                                                    {
-                                                                                                                        sohbetleryolu.child(kullanici_id_listesi).child(aktifkullaniciId)
-                                                                                                                                .removeValue()
-                                                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                                                                    @Override
-                                                                                                                                    public void onComplete(@NonNull Task<Void> task)
-                                                                                                                                    {
-                                                                                                                                        Toast.makeText(getContext(), "Sohbet Kaydedildi", Toast.LENGTH_LONG).show();
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task)
+                                                                {
+                                                                    if (task.isSuccessful())
+                                                                    {
+                                                                        sohbetleryolu.child(kullanici_id_listesi).child(aktifkullaniciId)
+                                                                                .child("sohbetler").setValue("Kaydedildi")
+                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                    @Override
+                                                                                    public void onComplete(@NonNull Task<Void> task)
+                                                                                    {
+                                                                                        if (task.isSuccessful())
+                                                                                        {
+                                                                                            sohbeettalebleriyolu.child(aktifkullaniciId).child(kullanici_id_listesi)
+                                                                                                    .removeValue()
+                                                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                        @Override
+                                                                                                        public void onComplete(@NonNull Task<Void> task)
+                                                                                                        {
+                                                                                                            if (task.isSuccessful())
+                                                                                                            {
+                                                                                                                sohbetleryolu.child(kullanici_id_listesi).child(aktifkullaniciId)
+                                                                                                                        .removeValue()
+                                                                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                                            @Override
+                                                                                                                            public void onComplete(@NonNull Task<Void> task)
+                                                                                                                            {
+                                                                                                                                Toast.makeText(getContext(), "Sohbet Kaydedildi", Toast.LENGTH_LONG).show();
 
-                                                                                                                                    }
-                                                                                                                                });
-                                                                                                                    }
-                                                                                                                }
-                                                                                                            });
-                                                                                                }
-                                                                                            }
-                                                                                        });
-                                                                            }
-                                                                        }
-                                                                    });
+                                                                                                                            }
+                                                                                                                        });
+                                                                                                            }
+                                                                                                        }
+                                                                                                    });
+                                                                                        }
+                                                                                    }
+                                                                                });
+                                                                    }
+                                                                }
+                                                            });
 
                                                         }
                                                         if (i==1)
@@ -260,102 +260,6 @@ public class TaleplerFragment extends Fragment {
                                     }
                                 });
                             }
-                            else if(tur.equals("gonderildi")){
-
-                                Button talep_gonderme_btn = taleplerViewholder.item.findViewById(R.id.talepkabulbutonu);
-                                talep_gonderme_btn.setText("Talep Gonderildi");
-                                taleplerViewholder.itemView.findViewById(R.id.talepiptalbutonu).setVisibility(View.INVISIBLE);
-
-                                //YENİ KISIM
-                                kullanicilaryolu.child(kullanici_id_listesi).addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot)
-                                    {
-                                        if (snapshot.hasChild("resim"))
-                                        {
-
-                                            //veri tabanından resmleri çekip değişkenlere aktarma
-
-                                            final String talepkullaniciresmi=snapshot.child("resim").getValue().toString();
-
-                                            //çekilen resimleri ilgili kontrollere aktarma
-
-                                            Picasso.get().load(talepkullaniciresmi).into(taleplerViewholder.profilresmi);
-
-                                        }
-
-
-                                        //veri tabanından verileri çekip değişkenlere aktarma
-                                        final String talepkullaniciadi=snapshot.child("ad").getValue().toString();
-                                        final String talepkullanicidurumu=snapshot.child("durum").getValue().toString();
-
-
-                                        //çekilen verileri ilgili kontrollere aktarma
-                                        taleplerViewholder.kullaniciadi.setText(talepkullaniciadi);
-                                        taleplerViewholder.kullanicidurumu.setText("sen "+talepkullaniciadi +" adlı kullanıcıya talep gönderdin");
-
-
-                                        //her satıra tıklandığında ne yapsın
-                                        taleplerViewholder.itemView.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View view)
-                                            {
-                                                CharSequence secenekler[]=new CharSequence[]
-                                                        {
-                                                                "Chat talebini iptal et"
-                                                        };
-                                                //ALERTDİALOG
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                                builder.setTitle("Mevcut chat talebi");
-
-                                                builder.setItems(secenekler, new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i)
-                                                    {
-
-                                                        if (i==0)
-                                                        {
-                                                            sohbeettalebleriyolu.child(aktifkullaniciId).child(kullanici_id_listesi)
-                                                                    .removeValue()
-                                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                        @Override
-                                                                        public void onComplete(@NonNull Task<Void> task)
-                                                                        {
-                                                                            if (task.isSuccessful())
-                                                                            {
-                                                                                sohbetleryolu.child(kullanici_id_listesi).child(aktifkullaniciId)
-                                                                                        .removeValue()
-                                                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                                            @Override
-                                                                                            public void onComplete(@NonNull Task<Void> task)
-                                                                                            {
-                                                                                                Toast.makeText(getContext(), "Chat talebeniz Silindi", Toast.LENGTH_LONG).show();
-
-                                                                                            }
-                                                                                        });
-                                                                            }
-                                                                        }
-                                                                    });
-
-
-                                                        }
-                                                    }
-                                                });
-                                                builder.show();
-
-                                            }
-
-                                        });
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error)
-                                    {
-
-                                    }
-                                });
-
-                            }
                         }
 
                     }
@@ -384,7 +288,6 @@ public class TaleplerFragment extends Fragment {
     }
     public static class TaleplerViewholder extends RecyclerView.ViewHolder
     {
-        public View item;
         //kontroller
         TextView kullaniciadi,kullanicidurumu;
         CircleImageView profilresmi;
