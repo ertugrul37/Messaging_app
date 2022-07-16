@@ -17,12 +17,16 @@ public class Strings {
     public String i = "Durum boş olamaz";
     public String j = "Bilgi aktarma";
     public String k = "Lütfen bekleyin";
+    //Ayarlar bitiş
 
     public String l = " HATA ";//hata mesajı her sayfada aynı kullanım
 
-    public String m = "Lütfen Profilinizi güncelleyiniz";
-    public String n = "Ad boş olamaz";
-    public String o = "Durum boş olamaz";
+    //Ayarlar başlangıç
+    public String m = "Mesaj yazmanız gerekiyor";
+    public String n = "Mesaj gönderildi";
+    public String o = "Mesaj gönderme hatalı";
+    //Ayarlar bitiş
+    
     public String p = "Profil Resimleri";
     public String q = "Profil ayarları";
     public String r = "Resim seçilemedi";

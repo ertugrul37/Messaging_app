@@ -52,6 +52,8 @@ public class chatActivity extends AppCompatActivity {
     private MesajAdaptor mesajAdaptor;
     private RecyclerView kullanicimesajlarilisetesi;
 
+    Strings metin = new Strings();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,7 +148,7 @@ public class chatActivity extends AppCompatActivity {
        String mesajMetni = mesajgirilenmetni.getText().toString();
        if (TextUtils.isEmpty(mesajMetni))
        {
-           Toast.makeText(this,"Mesaj yazmanız gerekiyor",Toast.LENGTH_LONG).show();
+           Toast.makeText(this,metin.m,Toast.LENGTH_LONG).show();
        }
        else
        {
@@ -172,11 +174,11 @@ public class chatActivity extends AppCompatActivity {
                {
                    if (task.isSuccessful())
                    {
-                       Toast.makeText(chatActivity.this, "Mesaj gönderildi", Toast.LENGTH_LONG).show();
+                       Toast.makeText(chatActivity.this, metin.n, Toast.LENGTH_LONG).show();
                    }
                    else
                    {
-                       Toast.makeText(chatActivity.this, "Mesaj gönderme hatalı", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(chatActivity.this, metin.o, Toast.LENGTH_SHORT).show();
                    }
                    mesajgirilenmetni.setText("");
                }
