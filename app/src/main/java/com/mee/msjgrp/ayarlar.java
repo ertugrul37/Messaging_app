@@ -45,8 +45,6 @@ public class ayarlar extends AppCompatActivity {
     private CircleImageView kullanıcıprofili;
     //yükleniyor
     private ProgressDialog yukleniyorBar;
-
-
     //resim seçme
     private static final int galerisecme=1;
     //firebase
@@ -56,17 +54,16 @@ public class ayarlar extends AppCompatActivity {
     private DatabaseReference veriyoluuuu;
     private String mevcutkullanıcıId;
 
-
     //toolbar tanım
     private Toolbar ayarlartoolbar;
-
+    Strings metin = new Strings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ayarlar);
 
-        profilresmi = FirebaseStorage.getInstance().getReference().child("Profil Resimleri");
+        profilresmi = FirebaseStorage.getInstance().getReference().child(metin.d);
          //kontrol tanımlamaları
         hesapayarlarınıgüncelle=findViewById(R.id.ayarlarıguncelleme);
         kullanıcıadı=findViewById(R.id.kullanıcıadıayarla);
@@ -78,7 +75,7 @@ public class ayarlar extends AppCompatActivity {
         setSupportActionBar(ayarlartoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Profil ayarları");
+        getSupportActionBar().setTitle(metin.e);
 
         //yükleniyor
         yukleniyorBar=new ProgressDialog(this);
@@ -93,9 +90,6 @@ public class ayarlar extends AppCompatActivity {
               }
           });
           kullanıcıadı.setVisibility(View.INVISIBLE);
-
-
-
           Kullanıcıbilgisial();
 
           kullanıcıprofili.setOnClickListener(new View.OnClickListener() {
@@ -106,11 +100,8 @@ public class ayarlar extends AppCompatActivity {
                           .setGuidelines(CropImageView.Guidelines.ON)
                           .setAspectRatio(1,1)
                           .start(ayarlar.this);
-
-
               }
           });
-
     }
     private String dosyauzantısıal(Uri uri)
     {
@@ -131,16 +122,12 @@ public class ayarlar extends AppCompatActivity {
             kullanıcıprofili.setImageURI(resimUri);
         }else
         {
-            Toast.makeText(this,"Resim seçilemedi",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,metin.f,Toast.LENGTH_LONG).show();
         }
-
     }
     //Uri
     Uri resimUri;
     String myUri="";
-
-
-
     private void Kullanıcıbilgisial() {
 
         veriyoluuuu.child("kullanicilar").child(mevcutkullanıcıId).addValueEventListener(new ValueEventListener() {
@@ -154,8 +141,6 @@ public class ayarlar extends AppCompatActivity {
                     Picasso.get().load(kullaniciResmial).into(kullanıcıprofili);
                     kullanıcıadı.setText(kullaniciAdial);
                     kullanıcıdurumu.setText(kullaniciAdial);
-
-
                 }
                else if ((snapshot.exists())&&(snapshot.hasChild("ad")))
                 {
@@ -165,22 +150,16 @@ public class ayarlar extends AppCompatActivity {
 
                     kullanıcıadı.setText(kullaniciAdial);
                     kullanıcıdurumu.setText(kullaniciAdial);
-
-
-
                 }else
                 {
                     kullanıcıadı.setVisibility(View.VISIBLE);
-                    Toast.makeText(ayarlar.this,"Lütfen Profilinizi güncelleyiniz",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ayarlar.this,metin.g,Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
     }
     private void hesapayarlarınıgüncelle(){
        String kullaniciadinial=kullanıcıadı.getText().toString();
@@ -188,11 +167,11 @@ public class ayarlar extends AppCompatActivity {
 
         if (TextUtils.isEmpty(kullaniciadinial))
         {
-            Toast.makeText(this,"Ad boş olamaz",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,metin.h,Toast.LENGTH_LONG).show();
         }
         if (TextUtils.isEmpty(kullanicidurumunual))
         {
-            Toast.makeText(this,"Durum boş olamaz",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,metin.i,Toast.LENGTH_LONG).show();
         }
         else
         {
@@ -201,15 +180,13 @@ public class ayarlar extends AppCompatActivity {
     }
     private void resimYukle() {
 
-
-        yukleniyorBar.setTitle("Bilgi aktarma");
-        yukleniyorBar.setMessage("Lütfen bekleyin");
+        yukleniyorBar.setTitle(metin.j);
+        yukleniyorBar.setMessage(metin.k);
         yukleniyorBar.setCanceledOnTouchOutside(false);
         yukleniyorBar.show();
 
         if (resimUri==null)
         {
-
             DatabaseReference veriyolu=FirebaseDatabase.getInstance().getReference().child("kullanicilar");
             String gonderId=veriyolu.push().getKey();
             String kullaniciAdial=kullanıcıadı.getText().toString();
@@ -224,7 +201,6 @@ public class ayarlar extends AppCompatActivity {
             veriyolu.child(mevcutkullanıcıId).updateChildren(profilharitası);
 
             yukleniyorBar.dismiss();
-
         }
         else
         {
@@ -237,7 +213,6 @@ public class ayarlar extends AppCompatActivity {
                     {
                         throw task.getException();
                     }
-
                     return resimyolu.getDownloadUrl();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -245,7 +220,6 @@ public class ayarlar extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Uri> task) {
 
                     //GÖREVTAMAMLANDIĞINDA
-
                     if (task.isSuccessful())
                     {
                         //başaralı ise
@@ -269,21 +243,17 @@ public class ayarlar extends AppCompatActivity {
                     else
                     {
                         String hata = task.getException().toString();
-                        Toast.makeText(ayarlar.this,"HATA "+hata,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ayarlar.this,metin.l+hata,Toast.LENGTH_SHORT).show();
                         yukleniyorBar.dismiss();
                     }
-
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ayarlar.this,"HATA"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ayarlar.this,metin.l+e.getMessage(),Toast.LENGTH_SHORT).show();
                     yukleniyorBar.dismiss();
                 }
             });
-
         }
-
-
     }
 }
