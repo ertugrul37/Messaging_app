@@ -30,24 +30,26 @@ public class Arkadasbul extends AppCompatActivity {
 
     //firebase
     private DatabaseReference kullainiciyolu;
+    //kelimeleri çektiğim sınıfın  "metin" değişkenine atama
+    Strings metin = new Strings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arkadasbul);
 
-        Arkadasbullisetesi=findViewById(R.id.arkadasbullistesi);
+        Arkadasbullisetesi = findViewById(R.id.arkadasbullistesi);
         Arkadasbullisetesi.setLayoutManager(new LinearLayoutManager(this));
 
-        mToolbar=findViewById(R.id.arkdasbul);
+        mToolbar = findViewById(R.id.arkdasbul);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Arkadaş Bul");
+        getSupportActionBar().setTitle(metin.a);
 
 
         //firebasetanılaması
-        kullainiciyolu= FirebaseDatabase.getInstance().getReference().child("kullanicilar");
+        kullainiciyolu = FirebaseDatabase.getInstance().getReference().child(metin.b);
 
     }
 
@@ -58,68 +60,65 @@ public class Arkadasbul extends AppCompatActivity {
         //başladığında ne yapsın
 
         //sorgu-seçenekler
-        FirebaseRecyclerOptions<kisiler>secenekler=
+        FirebaseRecyclerOptions<kisiler> secenekler =
                 new FirebaseRecyclerOptions.Builder<kisiler>()
-                .setQuery(kullainiciyolu,kisiler.class)
-                .build();
+                        .setQuery(kullainiciyolu, kisiler.class)
+                        .build();
 
-        FirebaseRecyclerAdapter<kisiler,ArkadasBulViewHolder> adapter = new
+        FirebaseRecyclerAdapter<kisiler, ArkadasBulViewHolder> adapter = new
                 FirebaseRecyclerAdapter<kisiler, ArkadasBulViewHolder>(secenekler) {
-            @Override
-            protected void onBindViewHolder
-                    (@NonNull ArkadasBulViewHolder arkdasBulViewHolder,
-
-                     @SuppressLint("RecyclerView") final int position, @NonNull kisiler kisilerm) {
-
-                arkdasBulViewHolder.kullaniciAdi.setText(kisilerm.getAd());
-                arkdasBulViewHolder.kullanicidurumu.setText(kisilerm.getDurum());
-                Picasso.get().load(kisilerm.getResim()).into(arkdasBulViewHolder.profilResmi);
-
-                //Tıklandığında
-                arkdasBulViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        String Tıklanankullanicliarıdgoster=getRef(position).getKey();
+                    protected void onBindViewHolder
+                            (@NonNull ArkadasBulViewHolder arkdasBulViewHolder,
 
-                        Intent profilAktivite=new Intent(Arkadasbul.this,profilActivity.class);
+                             @SuppressLint("RecyclerView") final int position, @NonNull kisiler kisilerm) {
 
-                        profilAktivite.putExtra("Tıklanankullanicliarıdgoster",
-                                Tıklanankullanicliarıdgoster);
+                        arkdasBulViewHolder.kullaniciAdi.setText(kisilerm.getAd());
+                        arkdasBulViewHolder.kullanicidurumu.setText(kisilerm.getDurum());
+                        Picasso.get().load(kisilerm.getResim()).into(arkdasBulViewHolder.profilResmi);
 
-                        startActivity(profilAktivite);
+                        //Tıklandığında
+                        arkdasBulViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String Tıklanankullanicliarıdgoster = getRef(position).getKey();
+
+                                Intent profilAktivite = new Intent(Arkadasbul.this, profilActivity.class);
+
+                                profilAktivite.putExtra(metin.c,
+                                        Tıklanankullanicliarıdgoster);
+                                startActivity(profilAktivite);
+
+                            }
+                        });
 
                     }
-                });
 
-            }
+                    @NonNull
+                    @Override
+                    public ArkadasBulViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.kullanicigosterme, parent, false);
+                        ArkadasBulViewHolder bulviewHolder = new ArkadasBulViewHolder(view);
 
-            @NonNull
-            @Override
-            public ArkadasBulViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.kullanicigosterme,parent,false);
-                ArkadasBulViewHolder bulviewHolder=new ArkadasBulViewHolder(view);
-
-                return bulviewHolder;
-            }
-        };
+                        return bulviewHolder;
+                    }
+                };
         Arkadasbullisetesi.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.startListening();
-
     }
-    public static class ArkadasBulViewHolder extends RecyclerView.ViewHolder
-    {
-        TextView kullaniciAdi,kullanicidurumu;
+
+    public static class ArkadasBulViewHolder extends RecyclerView.ViewHolder {
+        TextView kullaniciAdi, kullanicidurumu;
         CircleImageView profilResmi;
 
         public ArkadasBulViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
             //Tanımlamalar
-            kullaniciAdi=itemView.findViewById(R.id.kullaniciAdi);
-            kullanicidurumu=itemView.findViewById(R.id.kullanicidurumu);
-            profilResmi=itemView.findViewById(R.id.kullaniciresmi);
+            kullaniciAdi = itemView.findViewById(R.id.kullaniciAdi);
+            kullanicidurumu = itemView.findViewById(R.id.kullanicidurumu);
+            profilResmi = itemView.findViewById(R.id.kullaniciresmi);
         }
     }
 }
