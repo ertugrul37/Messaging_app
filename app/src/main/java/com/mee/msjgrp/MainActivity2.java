@@ -27,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity2 extends AppCompatActivity {
-
+    Strings metin = new Strings();
     private Toolbar actionbar;
     private ViewPager vpMain;
     private TabLayout tabsMain;
@@ -58,12 +58,11 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void kullanıcıvarlıgınıdogrula() {
         String mevcutkullanıcıID = auth.getCurrentUser().getUid();
-
         kullanıcılarreference.child("kullanicilar").child(mevcutkullanıcıID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if ((snapshot.child("ad").exists())) {
-                    Toast.makeText(MainActivity2.this, "Hoşgeldiniz..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity2.this, metin.v, Toast.LENGTH_SHORT).show();
                 } else {
                     Intent ayarlar = new Intent(MainActivity2.this, com.mee.msjgrp.ayarlar.class);
                     ayarlar.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -71,10 +70,8 @@ public class MainActivity2 extends AppCompatActivity {
                     finish();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }
@@ -85,7 +82,6 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         init();
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -96,16 +92,13 @@ public class MainActivity2 extends AppCompatActivity {
         } else {
             kullanıcıvarlıgınıdogrula();
         }
-
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menumain, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -121,41 +114,35 @@ public class MainActivity2 extends AppCompatActivity {
             Intent ayarlartxt = new Intent(MainActivity2.this, ayarlar.class);
             startActivity(ayarlartxt);
         }
-
         if (item.getItemId() == R.id.mainLogout) {
             auth.signOut();
             Intent loginIntent = new Intent(MainActivity2.this, hesapvar.class);
             startActivity(loginIntent);
             finish();
         }
-
-
         return true;
     }
-
     private void yenigurubtalebi() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this, R.style.Alertdialog);
-        builder.setTitle("Grup Adı Girin:");
+        builder.setTitle(metin.w);
 
         final EditText grupAdialani = new EditText(MainActivity2.this);
-        grupAdialani.setHint("Örnek: C tonları ");
+        grupAdialani.setHint(metin.x);
         builder.setView(grupAdialani);
-
-        builder.setPositiveButton("Oluştur", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(metin.y, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-
                 String grupadi = grupAdialani.getText().toString();
                 if (TextUtils.isEmpty(grupadi)) {
-                    Toast.makeText(MainActivity2.this, "Grup adı boş bırakılamaz", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity2.this, metin.z, Toast.LENGTH_LONG).show();
                 } else {
                     YeniGrubOlustur(grupadi);
                 }
             }
         });
-        builder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(metin.aa, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -163,18 +150,15 @@ public class MainActivity2 extends AppCompatActivity {
         });
         builder.show();
     }
-
     private void YeniGrubOlustur(String grupadi) {
         kullanıcılarreference.child("Grublar").child(grupadi).setValue("")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity2.this, grupadi + "adlı grup oluşturuldu", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity2.this, grupadi + metin.ab, Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
-
+                 }
+          });
     }
 }

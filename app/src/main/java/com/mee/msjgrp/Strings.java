@@ -26,19 +26,31 @@ public class Strings {
     public String n = "Mesaj gönderildi";
     public String o = "Mesaj gönderme hatalı";
     //Ayarlar bitiş
-    
-    public String p = "Profil Resimleri";
-    public String q = "Profil ayarları";
-    public String r = "Resim seçilemedi";
-    public String t = "Lütfen Profilinizi güncelleyiniz";
-    public String u = "Ad boş olamaz";
-    public String v = "Durum boş olamaz";
-    public String w = "Resim seçilemedi";
-    public String x = "Lütfen Profilinizi güncelleyiniz";
-    public String y = "Ad boş olamaz";
-    public String z = "Durum boş olamaz";
+
+    //hesapvar başlangıç
+    public String p = "GİRİŞ YAP";
+    public String q = "Email alanı boş olamaz";
+    public String r = "Şifre alanı boş bırakılamaz";
+    public String t = "Giriş başarılı";
+    public String u = "Giriş başarısız";
+    //hesapvar bitiş
+
+    //MainActivity2 başlangıç
+    public String v = "Hoşgeldiniz..";
+    public String w = "Grup Adı Girin:";
+    public String x = "Örnek: C tonları ";
+    public String y = "Oluştur";
+    public String z = "Grup adı boş bırakılamaz";
+    public String aa = "İptal";
+    public String ab = "adlı grup oluşturuldu";
+    //MainActivity2 bitiş
 
 
-    //Ayarlar bitiş
+    public String ac = "Grup adı boş bırakılamaz";
+    public String ad = "Grup adı boş bırakılamaz";
+
+
+
+
 
 }
