@@ -1,5 +1,4 @@
 package com.mee.msjgrp;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,21 +23,19 @@ import org.w3c.dom.Text;
 
 import java.io.PipedReader;
 import java.lang.ref.Reference;
-
 public class yenihesapvar extends AppCompatActivity {
 
+    Strings metin = new Strings();
     private Toolbar actionbarregister;
     private EditText txtUsername,txtmail,txtpassword;
     private Button btnRegister;
     private FirebaseAuth auth;
     private DatabaseReference kokreference;
 
-
     public void init(){
-
         actionbarregister =(Toolbar) findViewById(R.id.actionbarregister);
         setSupportActionBar(actionbarregister);
-        getSupportActionBar().setTitle("HESAP OLUŞTUR");
+        getSupportActionBar().setTitle(metin.ax);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth = FirebaseAuth.getInstance();
@@ -51,14 +48,10 @@ public class yenihesapvar extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 createNewAccount();
             }
-
         });
-
     }
-
     private void createNewAccount() {
 
         String username = txtUsername.getText().toString();
@@ -66,32 +59,26 @@ public class yenihesapvar extends AppCompatActivity {
         String password = txtpassword.getText().toString();
 
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Email Alanı Boş Olamaz !",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,metin.q,Toast.LENGTH_LONG).show();
         }else if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Şifre Alanı Boş Olamaz !",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,metin.r,Toast.LENGTH_LONG).show();
         }else{
              auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                  @Override
                  public void onComplete(@NonNull Task<AuthResult> task) {
-
                      if (task.isSuccessful()){
-
                          String mevcutkullanıcılar=auth.getCurrentUser().getUid();
                          kokreference.child("kullanicilar").child(mevcutkullanıcılar).setValue("");
-
-                         Toast.makeText(yenihesapvar.this,"Hesap oluşturuldu", Toast.LENGTH_LONG).show();
+                         Toast.makeText(yenihesapvar.this,metin.ba, Toast.LENGTH_LONG).show();
                          Intent loginIntent = new Intent(yenihesapvar.this,hesapvar.class);
                          startActivity(loginIntent);
                          finish();
-
-
                      }else{
-                         Toast.makeText(yenihesapvar.this,"Bir hata oluştu",Toast.LENGTH_LONG).show();
+                         Toast.makeText(yenihesapvar.this,metin.l,Toast.LENGTH_LONG).show();
                      }
                  }
              });
         }
-
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +86,5 @@ public class yenihesapvar extends AppCompatActivity {
         setContentView(R.layout.activity_yenihesapvar);
         kokreference=FirebaseDatabase.getInstance().getReference();
         init();
-
     }
 }

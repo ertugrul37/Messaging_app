@@ -29,8 +29,8 @@ public class Strings {
 
     //hesapvar başlangıç
     public String p = "GİRİŞ YAP";
-    public String q = "Email alanı boş olamaz";
-    public String r = "Şifre alanı boş bırakılamaz";
+    public String q = "Email Alanı Boş Olamaz !";
+    public String r = "Şifre Alanı Boş Olamaz !";
     public String t = "Giriş başarılı";
     public String u = "Giriş başarısız";
     //hesapvar bitiş
@@ -73,11 +73,16 @@ public class Strings {
     public String av = "Kod gönderildi";
     public String aw = "Telefon ile oturumunuz açıldı..";
     //TelefonoturumActivity  bitiş
-    public String ax = "MESAJ TALEBİ KABUL";
-    public String ay = "BU SOHBETİ SİL";
-    public String az = "MESAJ TALEBİ GÖNDER";
-    public String ba = "Sohbet Talebi İptal";
-    public String bb = "arkadaşlar";
+
+    //yenihesapvar başlangıç
+    public String ax = "HESAP OLUŞTUR";
+    public String ba = "Hesap oluşturuldu";
+    //yenihesapvar bitiş
+
+    //MesajAtapter başlangıç
+    public String ay = "DATABASE ERROR MesajAdator.java";
+    //MesajAtapter bitiş
+   
 
 
 

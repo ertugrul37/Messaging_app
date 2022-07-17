@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mee.msjgrp.R;
+import com.mee.msjgrp.Strings;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import model.mesajlarmodeli;
 
 public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarViewholder>
 {
+    Strings metin = new Strings();
     private List<mesajlarmodeli> kullanicimesajlarlistesi;
      private FirebaseAuth mYetki;
      private DatabaseReference kullanicilaryolu;
@@ -53,11 +55,9 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
     @Override
     public MesajlarViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.ozel_mesajlar_layaout,parent,false);
-
          //firebase tanımlama
         mYetki=FirebaseAuth.getInstance();
         return new MesajlarViewholder(view);
-
     }
 
     @Override
@@ -77,30 +77,21 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
                if (snapshot.hasChild("resim"))
                {
                    String resmialici=snapshot.child("resim").getValue().toString();
-
                    Picasso.get().load(resmialici).placeholder(R.drawable.icons8).into(holder.aliciprofilresmi);
-
-
                }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
-
+              System.out.println(metin.ay);
             }
         });
-
-
-
         if (kimdenmesajturu.equals("metin"))
         {
             holder.alicimesajmetni.setVisibility(View.INVISIBLE);
             holder.aliciprofilresmi.setVisibility(View.INVISIBLE);
-
             if (kimdenkullaniciId.equals(mesajgonderenId))
             {
-
                 holder.gonderenmesajmetni.setBackgroundResource(R.drawable.gonderen_mesajlari_layout);
                 holder.gonderenmesajmetni.setTextColor(Color.BLACK);
                 holder.gonderenmesajmetni.setText(mesajlar.getMesaj());
@@ -108,18 +99,14 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
             else
             {
                 holder.gonderenmesajmetni.setVisibility(View.INVISIBLE);
-
                 holder.aliciprofilresmi.setVisibility(View.VISIBLE);
                 holder.alicimesajmetni.setVisibility(View.VISIBLE);
-
                 holder.alicimesajmetni.setBackgroundResource(R.drawable.alici_mesajlari_dosyasi);
                 holder.alicimesajmetni.setTextColor(Color.BLACK);
                 holder.alicimesajmetni.setText(mesajlar.getMesaj());
             }
         }
-
     }
-
     @Override
     public int getItemCount() {
         return kullanicimesajlarlistesi.size();
