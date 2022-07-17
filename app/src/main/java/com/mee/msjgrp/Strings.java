@@ -53,7 +53,13 @@ public class Strings {
     public String ag = "MESAJ TALEBİ GÖNDER";
     public String ah = "Sohbet Talebi İptal";
     public String ai = "arkadaşlar";
-    //MainActivity2 bitiş
+    //ProfilActivity  bitiş
+
+    //TabsAdapter başlangıç
+    public String aj = "GRUP";
+    public String ak = "MESAJLAR";
+    public String al = "KİŞİLER";
+    public String am = "İSTEKLER";
 
 
 

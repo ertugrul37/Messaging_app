@@ -10,6 +10,7 @@ public class TabsAdapter extends FragmentPagerAdapter {
     public TabsAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
+    Strings metin = new Strings();
 
     @NonNull
     @Override
@@ -44,13 +45,13 @@ public class TabsAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0:
-                return "GRUP";
+                return metin.aj;
             case 1:
-                return "MESAJLAR";
+                return metin.ak;
             case 2:
-                return "KİŞİLER";
+                return metin.al;
             case 3:
-                return "İSTEKLER";
+                return metin.am;
             default:
                 return null;
         }
