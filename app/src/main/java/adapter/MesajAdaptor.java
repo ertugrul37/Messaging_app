@@ -24,74 +24,68 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import model.mesajlarmodeli;
 
-public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarViewholder>
-{
+public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarViewholder> {
     Strings metin = new Strings();
     private List<mesajlarmodeli> kullanicimesajlarlistesi;
-     private FirebaseAuth mYetki;
-     private DatabaseReference kullanicilaryolu;
-    public MesajAdaptor(List<mesajlarmodeli> kullanicimesajlarlistesi)
-    {
-        this.kullanicimesajlarlistesi=kullanicimesajlarlistesi;
+    private FirebaseAuth mYetki;
+    private DatabaseReference kullanicilaryolu;
+
+    public MesajAdaptor(List<mesajlarmodeli> kullanicimesajlarlistesi) {
+        this.kullanicimesajlarlistesi = kullanicimesajlarlistesi;
     }
-    public class MesajlarViewholder extends RecyclerView.ViewHolder
-    {
-        public TextView gonderenmesajmetni,alicimesajmetni;
+
+    public class MesajlarViewholder extends RecyclerView.ViewHolder {
+        public TextView gonderenmesajmetni, alicimesajmetni;
         public CircleImageView aliciprofilresmi;
-        public MesajlarViewholder(View itemView)
-        {
+
+        public MesajlarViewholder(View itemView) {
             super(itemView);
-            alicimesajmetni=itemView.findViewById(R.id.mesajalanchat1);
-            gonderenmesajmetni=itemView.findViewById(R.id.mesajgonderenchat2);
-            aliciprofilresmi=itemView.findViewById(R.id.mesajprofilresmi);
+            alicimesajmetni = itemView.findViewById(R.id.mesajalanchat1);
+            gonderenmesajmetni = itemView.findViewById(R.id.mesajgonderenchat2);
+            aliciprofilresmi = itemView.findViewById(R.id.mesajprofilresmi);
         }
     }
+
     @NonNull
     @Override
     public MesajlarViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.ozel_mesajlar_layaout,parent,false);
-         //firebase tanımlama
-        mYetki=FirebaseAuth.getInstance();
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ozel_mesajlar_layaout, parent, false);
+        //firebase tanımlama
+        mYetki = FirebaseAuth.getInstance();
         return new MesajlarViewholder(view);
     }
+
     @Override
-    public void onBindViewHolder(@NonNull MesajlarViewholder holder, int position)
-    {
-      String mesajgonderenId=mYetki.getCurrentUser().getUid();
-        mesajlarmodeli mesajlar=kullanicimesajlarlistesi.get(position);
+    public void onBindViewHolder(@NonNull MesajlarViewholder holder, int position) {
+        String mesajgonderenId = mYetki.getCurrentUser().getUid();
+        mesajlarmodeli mesajlar = kullanicimesajlarlistesi.get(position);
 
-        String kimdenkullaniciId=mesajlar.getKimden();
-        String kimdenmesajturu=mesajlar.getTur();
+        String kimdenkullaniciId = mesajlar.getKimden();
+        String kimdenmesajturu = mesajlar.getTur();
 
-        kullanicilaryolu= FirebaseDatabase.getInstance().getReference().child("kullanicilar").child(kimdenkullaniciId);
+        kullanicilaryolu = FirebaseDatabase.getInstance().getReference().child("kullanicilar").child(kimdenkullaniciId);
         kullanicilaryolu.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-               if (snapshot.hasChild("resim"))
-               {
-                   String resmialici=snapshot.child("resim").getValue().toString();
-                   Picasso.get().load(resmialici).placeholder(R.drawable.icons8).into(holder.aliciprofilresmi);
-               }
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("resim")) {
+                    String resmialici = snapshot.child("resim").getValue().toString();
+                    Picasso.get().load(resmialici).placeholder(R.drawable.icons8).into(holder.aliciprofilresmi);
+                }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error)
-            {
-              System.out.println(metin.ay);
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println(metin.ay);
             }
         });
-        if (kimdenmesajturu.equals("metin"))
-        {
+        if (kimdenmesajturu.equals("metin")) {
             holder.alicimesajmetni.setVisibility(View.INVISIBLE);
             holder.aliciprofilresmi.setVisibility(View.INVISIBLE);
-            if (kimdenkullaniciId.equals(mesajgonderenId))
-            {
+            if (kimdenkullaniciId.equals(mesajgonderenId)) {
                 holder.gonderenmesajmetni.setBackgroundResource(R.drawable.gonderen_mesajlari_layout);
                 holder.gonderenmesajmetni.setTextColor(Color.BLACK);
                 holder.gonderenmesajmetni.setText(mesajlar.getMesaj());
-            }
-            else
-            {
+            } else {
                 holder.gonderenmesajmetni.setVisibility(View.INVISIBLE);
                 holder.aliciprofilresmi.setVisibility(View.VISIBLE);
                 holder.alicimesajmetni.setVisibility(View.VISIBLE);
@@ -101,6 +95,7 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
             }
         }
     }
+
     @Override
     public int getItemCount() {
         return kullanicimesajlarlistesi.size();
