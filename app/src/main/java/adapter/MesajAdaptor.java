@@ -30,8 +30,6 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
     private List<mesajlarmodeli> kullanicimesajlarlistesi;
      private FirebaseAuth mYetki;
      private DatabaseReference kullanicilaryolu;
-
-
     public MesajAdaptor(List<mesajlarmodeli> kullanicimesajlarlistesi)
     {
         this.kullanicimesajlarlistesi=kullanicimesajlarlistesi;
