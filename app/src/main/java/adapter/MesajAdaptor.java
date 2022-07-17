@@ -40,7 +40,6 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
     {
         public TextView gonderenmesajmetni,alicimesajmetni;
         public CircleImageView aliciprofilresmi;
-
         public MesajlarViewholder(View itemView)
         {
             super(itemView);
@@ -49,7 +48,6 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
             aliciprofilresmi=itemView.findViewById(R.id.mesajprofilresmi);
         }
     }
-
     @NonNull
     @Override
     public MesajlarViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
