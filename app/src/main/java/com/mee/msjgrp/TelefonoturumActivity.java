@@ -24,7 +24,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 public class TelefonoturumActivity extends AppCompatActivity {
-
+    Strings metin = new Strings();
     private Button dogrulamakodugonderbtn,dogrulabtn;
     private EditText telefonnumarasıgirdisi,dogrulamakodugirdisi;
   //telefon dogrulama
@@ -61,11 +61,11 @@ public class TelefonoturumActivity extends AppCompatActivity {
 
                 String telefonnumarası=telefonnumarasıgirdisi.getText().toString();
                 if (TextUtils.isEmpty(telefonnumarası)){
-                    Toast.makeText(TelefonoturumActivity.this, "Telefon numarası boş olamaz.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(TelefonoturumActivity.this,metin.an , Toast.LENGTH_LONG).show();
                 }else{
                     //yukleniyor penceresi
-                    yuklemebar.setTitle("Telefonla Doğrulama");
-                    yuklemebar.setMessage("Lütfen bekleyin...");
+                    yuklemebar.setTitle(metin.ao);
+                    yuklemebar.setMessage(metin.ap);
                     yuklemebar.setCanceledOnTouchOutside(false);
                     yuklemebar.show();
 
@@ -91,13 +91,13 @@ public class TelefonoturumActivity extends AppCompatActivity {
 
                 String dogrulamakodu=dogrulamakodugirdisi.getText().toString();
                 if(TextUtils.isEmpty(dogrulamakodu)){
-                    Toast.makeText(TelefonoturumActivity.this,"Doğrulama kodu boç olamaz",Toast.LENGTH_LONG).show();
+                    Toast.makeText(TelefonoturumActivity.this,metin.aq,Toast.LENGTH_LONG).show();
                 }
                 else{
 
                     //yukleniyor penceresi
-                    yuklemebar.setTitle("Kodla Doğrulama");
-                    yuklemebar.setMessage("Lütfen bekleyin...");
+                    yuklemebar.setTitle(metin.ar);
+                    yuklemebar.setMessage(metin.at);
                     yuklemebar.setCanceledOnTouchOutside(false);
                     yuklemebar.show();
 
@@ -120,7 +120,7 @@ public class TelefonoturumActivity extends AppCompatActivity {
                 //yükleme penceresi
                 yuklemebar.dismiss();
 
-                Toast.makeText(TelefonoturumActivity.this,"Geçersiz telefon numarası (+90xxxxxxxxxx) örnekteki gibi giriniz...",Toast.LENGTH_LONG).show();
+                Toast.makeText(TelefonoturumActivity.this,metin.au,Toast.LENGTH_LONG).show();
 
                 //görünürlük ayarlaması
                 dogrulamakodugonderbtn.setVisibility(View.VISIBLE);
@@ -142,7 +142,7 @@ public class TelefonoturumActivity extends AppCompatActivity {
                 //yükleme penceresi
                 yuklemebar.dismiss();
 
-                Toast.makeText(TelefonoturumActivity.this,"Kod gönderildi",Toast.LENGTH_LONG).show();
+                Toast.makeText(TelefonoturumActivity.this,metin.av,Toast.LENGTH_LONG).show();
 
                 //görünürlük ayarlaması
                 dogrulamakodugonderbtn.setVisibility(View.INVISIBLE);
@@ -161,12 +161,12 @@ public class TelefonoturumActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                               yuklemebar.dismiss();
-                              Toast.makeText(TelefonoturumActivity.this,"Telefon ile oturumunuz açıldı..",Toast.LENGTH_LONG).show();
+                              Toast.makeText(TelefonoturumActivity.this,metin.aw,Toast.LENGTH_LONG).show();
                               kullaniciyiAnasayfayagonder();
                         }
                         else {
                             String hatamesajı=task.getException().toString();
-                            Toast.makeText(TelefonoturumActivity.this,"HATA"+hatamesajı,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TelefonoturumActivity.this,metin.l+hatamesajı,Toast.LENGTH_SHORT).show();
 
                         }
                     }

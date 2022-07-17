@@ -62,6 +62,24 @@ public class Strings {
     public String am = "İSTEKLER";
     //TabsAdapter bitiş
 
+    //TelefonoturumActivity başlangıç
+    public String an = "Telefon numarası boş olamaz.";
+    public String ao = "Telefonla Doğrulama";
+    public String ap = "Lütfen bekleyin...";
+    public String aq = "Doğrulama kodu boç olamaz";
+    public String ar = "Kodla Doğrulama";
+    public String at = "Lütfen bekleyin...";
+    public String au = "Geçersiz telefon numarası (+90xxxxxxxxxx) örnekteki gibi giriniz...";
+    public String av = "Kod gönderildi";
+    public String aw = "Telefon ile oturumunuz açıldı..";
+    //TelefonoturumActivity  bitiş
+    public String ax = "MESAJ TALEBİ KABUL";
+    public String ay = "BU SOHBETİ SİL";
+    public String az = "MESAJ TALEBİ GÖNDER";
+    public String ba = "Sohbet Talebi İptal";
+    public String bb = "arkadaşlar";
+
+
 
 
 
