@@ -82,7 +82,7 @@ public class Strings {
     //MesajAtapter başlangıç
     public String ay = "DATABASE ERROR MesajAdator.java";
     //MesajAtapter bitiş
-   
+
 
 
 

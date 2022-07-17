@@ -44,7 +44,6 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
         public MesajlarViewholder(View itemView)
         {
             super(itemView);
-
             alicimesajmetni=itemView.findViewById(R.id.mesajalanchat1);
             gonderenmesajmetni=itemView.findViewById(R.id.mesajgonderenchat2);
             aliciprofilresmi=itemView.findViewById(R.id.mesajprofilresmi);
