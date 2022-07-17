@@ -54,7 +54,6 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
         mYetki=FirebaseAuth.getInstance();
         return new MesajlarViewholder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MesajlarViewholder holder, int position)
     {
@@ -106,6 +105,4 @@ public class MesajAdaptor extends RecyclerView.Adapter<MesajAdaptor.MesajlarView
     public int getItemCount() {
         return kullanicimesajlarlistesi.size();
     }
-
-
 }
