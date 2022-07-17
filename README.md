@@ -25,4 +25,4 @@
 
 create new account!
 
-[Ekran Alıntısı11](https://user-images.githubusercontent.com/74158698/179383282-351b6cd8-4288-4bfb-a110-cfa60655d012.PNG)
+![Ekran Alıntısı11](https://user-images.githubusercontent.com/74158698/179383340-d4e610b0-1224-4206-a455-cc30c51aec1f.PNG)
