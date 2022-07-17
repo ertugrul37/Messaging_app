@@ -60,6 +60,8 @@ public class Strings {
     public String ak = "MESAJLAR";
     public String al = "KİŞİLER";
     public String am = "İSTEKLER";
+    //TabsAdapter bitiş
+
 
 
 
