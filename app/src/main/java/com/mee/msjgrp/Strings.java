@@ -45,9 +45,17 @@ public class Strings {
     public String ab = "adlı grup oluşturuldu";
     //MainActivity2 bitiş
 
+    //ProfilActivity başlangıç
+    public String ac = "yeni";
+    public String ad = "MESAJ TALEBİ İPTAL";
+    public String ae = "MESAJ TALEBİ KABUL";
+    public String af = "BU SOHBETİ SİL";
+    public String ag = "MESAJ TALEBİ GÖNDER";
+    public String ah = "Sohbet Talebi İptal";
+    public String ai = "arkadaşlar";
+    //MainActivity2 bitiş
 
-    public String ac = "Grup adı boş bırakılamaz";
-    public String ad = "Grup adı boş bırakılamaz";
+
 
 
 

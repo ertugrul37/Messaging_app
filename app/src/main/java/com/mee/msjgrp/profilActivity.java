@@ -21,15 +21,14 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class profilActivity extends AppCompatActivity {
-
-    private String alinankullaniciId,aktifdurum,aktifkullaniciID;
-
+    Strings metin = new Strings();
+    private String alinankullaniciId, aktifdurum, aktifkullaniciID;
     private CircleImageView kullaniciprofilresmi;
-    private TextView kullaniciprofiladi,kullaniciprofildurumu;
-    private Button mesajgöndermetalebibutonu,mesajtalebiiptalbtn;
+    private TextView kullaniciprofiladi, kullaniciprofildurumu;
+    private Button mesajgöndermetalebibutonu, mesajtalebiiptalbtn;
 
     //FİREBASEE
-    private DatabaseReference kullaniciyolu,sohbettalebiyolu,sohbetleryolu;
+    private DatabaseReference kullaniciyolu, sohbettalebiyolu, sohbetleryolu;
     FirebaseAuth mYetki;
 
     @Override
@@ -37,42 +36,34 @@ public class profilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
 
-        alinankullaniciId=getIntent().getExtras().get("Tıklanankullanicliarıdgoster").toString();
+        alinankullaniciId = getIntent().getExtras().get(metin.c).toString();
 
         //Tanımlamalar
-        kullaniciprofilresmi=findViewById(R.id.profilresmiziyaret);
-        kullaniciprofiladi=findViewById(R.id.profilziyaretkullaniciadi);
-        kullaniciprofildurumu=findViewById(R.id.profilziyaretdurumu);
-        mesajgöndermetalebibutonu=findViewById(R.id.mesajgondermetalebibtn);
-        mesajtalebiiptalbtn=findViewById(R.id.mesajtalebiiptal);
-
-        aktifdurum="yeni";
-
+        kullaniciprofilresmi = findViewById(R.id.profilresmiziyaret);
+        kullaniciprofiladi = findViewById(R.id.profilziyaretkullaniciadi);
+        kullaniciprofildurumu = findViewById(R.id.profilziyaretdurumu);
+        mesajgöndermetalebibutonu = findViewById(R.id.mesajgondermetalebibtn);
+        mesajtalebiiptalbtn = findViewById(R.id.mesajtalebiiptal);
+        aktifdurum = metin.ac;
         //firebase tanımlama
-        kullaniciyolu= FirebaseDatabase.getInstance().getReference().child("kullanicilar");
-        sohbettalebiyolu= FirebaseDatabase.getInstance().getReference().child("sohbet talebi");
-        sohbetleryolu= FirebaseDatabase.getInstance().getReference().child("sohbetler");
-        mYetki=FirebaseAuth.getInstance();
-
-
-        aktifkullaniciID=mYetki.getCurrentUser().getUid();
-
+        kullaniciyolu = FirebaseDatabase.getInstance().getReference().child("kullanicilar");
+        sohbettalebiyolu = FirebaseDatabase.getInstance().getReference().child("sohbet talebi");
+        sohbetleryolu = FirebaseDatabase.getInstance().getReference().child("sohbetler");
+        mYetki = FirebaseAuth.getInstance();
+        aktifkullaniciID = mYetki.getCurrentUser().getUid();
         kullanicibilgisial();
     }
-
     private void kullanicibilgisial() {
 
         kullaniciyolu.child(alinankullaniciId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if ((snapshot.exists())&&(snapshot.hasChild("resim")))
-                {
+                if ((snapshot.exists()) && (snapshot.hasChild("resim"))) {
                     //veritabanından verileri çekip değişkenlere aktarma
-                    String kullaniciresmi=snapshot.child("resim").getValue().toString();
-                    String kullaniciADİ=snapshot.child("ad").getValue().toString();
-                    String kullanicidurumu=snapshot.child("durum").getValue().toString();
-
+                    String kullaniciresmi = snapshot.child("resim").getValue().toString();
+                    String kullaniciADİ = snapshot.child("ad").getValue().toString();
+                    String kullanicidurumu = snapshot.child("durum").getValue().toString();
 
                     //verileri kontrollere aktarma
                     Picasso.get().load(kullaniciresmi).placeholder(R.drawable.icons8).into(kullaniciprofilresmi);
@@ -80,150 +71,106 @@ public class profilActivity extends AppCompatActivity {
                     kullaniciprofildurumu.setText(kullanicidurumu);
                     //chat Talebi göderme metodu
                     chattalepleriniyönet();
-                    
-                }
-                else
-                {
+                } else {
                     //veritabanından verileri çekip değişkenlere aktarma
-                    String kullaniciADİ=snapshot.child("ad").getValue().toString();
-                    String kullanicidurumu=snapshot.child("durum").getValue().toString();
-
+                    String kullaniciADİ = snapshot.child("ad").getValue().toString();
+                    String kullanicidurumu = snapshot.child("durum").getValue().toString();
 
                     //verileri kontrollere aktarma
                     kullaniciprofiladi.setText(kullaniciADİ);
                     kullaniciprofildurumu.setText(kullanicidurumu);
                     chattalepleriniyönet();
-
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
     }
-
     private void chattalepleriniyönet() {
-    //talep varsa buton iptali göstersin
+        //talep varsa buton iptali göstersin
         sohbettalebiyolu.child(aktifkullaniciID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (snapshot.hasChild(alinankullaniciId))
-                {
-                    String talep_turu=snapshot.child(alinankullaniciId).child("talep_turu").getValue().toString();
-                    if (talep_turu.equals("gonderildi"))
-                    {
+                if (snapshot.hasChild(alinankullaniciId)) {
+                    String talep_turu = snapshot.child(alinankullaniciId).child("talep_turu").getValue().toString();
+                    if (talep_turu.equals("gonderildi")) {
 
-                        aktifdurum="talep_gonderildi";
-                        mesajgöndermetalebibutonu.setText("MESAJ TALEBİ İPTAL");
-                    }else
-                    {
-                        aktifdurum="talep_alindi";
-                        mesajgöndermetalebibutonu.setText("MESAJ TALEBİ KABUL");
+                        aktifdurum = "talep_gonderildi";
+                        mesajgöndermetalebibutonu.setText(metin.ad);
+                    } else {
+                        aktifdurum = "talep_alindi";
+                        mesajgöndermetalebibutonu.setText(metin.ae);
                         mesajtalebiiptalbtn.setVisibility(View.VISIBLE);
                         mesajtalebiiptalbtn.setEnabled(true);
 
                         mesajtalebiiptalbtn.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view)
-                            {
+                            public void onClick(View view) {
                                 Mesajtalebiİptal();
                             }
                         });
                     }
-                }
-                else
-                {
+                } else {
                     sohbetleryolu.child(aktifkullaniciID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(alinankullaniciId))
-                            {
-                                 aktifdurum="arkadaşlar";
-                                 mesajgöndermetalebibutonu.setText("BU SOHBETİ SİL");
-
+                            if (snapshot.hasChild(alinankullaniciId)) {
+                                aktifdurum = metin.ai;
+                                mesajgöndermetalebibutonu.setText(metin.af);
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
                 }
-
-                }
-
-
-
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
-        if (aktifkullaniciID.equals(alinankullaniciId))
-        {
+        if (aktifkullaniciID.equals(alinankullaniciId)) {
             //Butonu sakla
             mesajgöndermetalebibutonu.setVisibility(View.INVISIBLE);
-
-        }
-        else
-        {
+        } else {
             //Mesajtalebi gitsin
             mesajgöndermetalebibutonu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mesajgöndermetalebibutonu.setEnabled(false);
-                    if (aktifdurum.equals("yeni"))
-                    {
+                    if (aktifdurum.equals("yeni")) {
                         sohbettalebigonder();
                     }
-                    if (aktifdurum.equals("talep_gonderildi"))
-                    {
+                    if (aktifdurum.equals("talep_gonderildi")) {
                         Mesajtalebiİptal();
                     }
-                    if (aktifdurum.equals("talep_alindi"))
-                    {
+                    if (aktifdurum.equals("talep_alindi")) {
                         MesajtalebiKabul();
                     }
-                    if (aktifdurum.equals("arkadaşlar"))
-                    {
+                    if (aktifdurum.equals("arkadaşlar")) {
                         ozelSohbetisil();
                     }
                 }
             });
-
         }
-
     }
-
-    private void ozelSohbetisil()
-    {
+    private void ozelSohbetisil() {
         //sohbetisill
         sohbetleryolu.child(aktifkullaniciID).child(alinankullaniciId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                if (task.isSuccessful())
-                {
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
                     sohbetleryolu.child(alinankullaniciId).child(aktifkullaniciID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                            if (task.isSuccessful())
-                            {
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
                                 mesajgöndermetalebibutonu.setEnabled(true);
-                                aktifdurum="yeni";
-                                mesajgöndermetalebibutonu.setText("MESAJ TALEBİ GÖNDER");
-
+                                aktifdurum = metin.ac;
+                                mesajgöndermetalebibutonu.setText(metin.ag);
                                 mesajtalebiiptalbtn.setVisibility(View.INVISIBLE);
                                 mesajtalebiiptalbtn.setEnabled(false);
-
                             }
                         }
                     });
@@ -232,107 +179,85 @@ public class profilActivity extends AppCompatActivity {
             }
         });
     }
-
     private void MesajtalebiKabul() {
         sohbetleryolu.child(aktifkullaniciID).child(alinankullaniciId).child("sohbetler").setValue("Kaydedildi")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task)
-                    {
-                       if (task.isSuccessful())
-                       {
-                           sohbetleryolu.child(alinankullaniciId).child(aktifkullaniciID).child("sohbetler").setValue("Kaydedildi")
-                                   .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                       @Override
-                                       public void onComplete(@NonNull Task<Void> task) {
-                                           if (task.isSuccessful())
-                                           {
-                                               sohbettalebiyolu.child(aktifkullaniciID).child(alinankullaniciId)
-                                                       .removeValue()
-                                                       .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                           @Override
-                                                           public void onComplete(@NonNull Task<Void> task)
-                                                           {
-                                                               if (task.isSuccessful())
-                                                               {
-                                                                   sohbettalebiyolu.child(alinankullaniciId).child(aktifkullaniciID)
-                                                                           .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                       @Override
-                                                                       public void onComplete(@NonNull Task<Void> task)
-                                                                       {
-                                                                           mesajgöndermetalebibutonu.setEnabled(true);
-                                                                           aktifdurum = "arkadaşlar";
-                                                                           mesajgöndermetalebibutonu.setText("BU SOHBETİ SİL");
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            sohbetleryolu.child(alinankullaniciId).child(aktifkullaniciID).child("sohbetler").setValue("Kaydedildi")
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                sohbettalebiyolu.child(aktifkullaniciID).child(alinankullaniciId)
+                                                        .removeValue()
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) {
+                                                                    sohbettalebiyolu.child(alinankullaniciId).child(aktifkullaniciID)
+                                                                            .removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    mesajgöndermetalebibutonu.setEnabled(true);
+                                                                                    aktifdurum = metin.ai;
+                                                                                    mesajgöndermetalebibutonu.setText(metin.af);
 
-                                                                           mesajtalebiiptalbtn.setVisibility(View.INVISIBLE);
-                                                                           mesajtalebiiptalbtn.setEnabled(false);
-                                                                       }
-                                                                   });
-                                                               }
-                                                           }
-                                                       });
-                                           }
-                                       }
-                                   });
-                       }
+                                                                                    mesajtalebiiptalbtn.setVisibility(View.INVISIBLE);
+                                                                                    mesajtalebiiptalbtn.setEnabled(false);
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+                                            }
+                                        }
+                                    });
+                        }
                     }
                 });
     }
-
     private void Mesajtalebiİptal() {
         //Talebi gönderenden sil
         sohbettalebiyolu.child(aktifkullaniciID).child(alinankullaniciId).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onComplete(@NonNull Task<Void> task)
-            {
-                if (task.isSuccessful())
-                {
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
                     sohbettalebiyolu.child(alinankullaniciId).child(aktifkullaniciID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                         if (task.isSuccessful())
-                         {
-                             mesajgöndermetalebibutonu.setEnabled(true);
-                             aktifdurum="yeni";
-                             mesajgöndermetalebibutonu.setText("MESAJ TALEBİ GÖNDER");
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                mesajgöndermetalebibutonu.setEnabled(true);
+                                aktifdurum = metin.ac;
+                                mesajgöndermetalebibutonu.setText(metin.ag);
 
-                             mesajtalebiiptalbtn.setVisibility(View.INVISIBLE);
-                             mesajtalebiiptalbtn.setEnabled(false);
-
-                         }
+                                mesajtalebiiptalbtn.setVisibility(View.INVISIBLE);
+                                mesajtalebiiptalbtn.setEnabled(false);
+                            }
                         }
                     });
                 }
-
             }
         });
-
-
     }
-
     private void sohbettalebigonder() {
-
         sohbettalebiyolu.child(aktifkullaniciID).child(alinankullaniciId).child("talep_turu").setValue("gonderildi")
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task)
-                    {
-                        if (task.isSuccessful())
-                        {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
                             sohbettalebiyolu.child(alinankullaniciId).child(aktifkullaniciID).child("talep_turu")
                                     .setValue("alındı").addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    if (task.isSuccessful())
-                                    {
-                                        mesajgöndermetalebibutonu.setEnabled(true);
-                                        aktifdurum="talep_gonderildi";
-                                        mesajgöndermetalebibutonu.setText("Sohbet Talebi İptal");
-                                    }
-                                }
-                            });
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                mesajgöndermetalebibutonu.setEnabled(true);
+                                                aktifdurum = "talep_gonderildi";
+                                                mesajgöndermetalebibutonu.setText(metin.ah);
+                                            }
+                                        }
+                                    });
                         }
                     }
                 });
